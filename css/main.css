@@ -30,6 +30,7 @@ body {
   color: #191919;
   word-break: keep-all;
   background-color: rgb(198, 245, 245);
+  height: 2000px;
 }
 /* 안내창 */
 /* 공통요소 */
@@ -53,8 +54,12 @@ body {
   background-color: rgba(0, 0, 0, 0.84);
   z-index: 999999;
   padding: 50px;
+  transition: left .3s;
 }
-
+/* menu clicked js */
+.nav-active{
+  left: calc(100% - 450px);
+}
 .nav-close {
   position: absolute;
   top: 20px;
@@ -114,10 +119,14 @@ body {
   z-index: 9999;
   background-color: rgba(255, 255, 255, 0);
 }
-.logo-w {
+/* header js */
+.header-active{
+  background-color: #fff;
+}
+.logo-wh {
   display: block;
 }
-.logo-g {
+.logo-gr {
   display: none;
 }
 .header .inner {
@@ -163,6 +172,7 @@ body {
   transform: translateY(-10px);
   opacity: 0;
   visibility: hidden;
+  /* transition: all .5s; */
 }
 .language-box-active li {
   transform: translateY(0);
@@ -177,4 +187,80 @@ body {
   cursor: pointer;
   font-weight: 500;
   padding: 5px 0;
+}
+.btn-menu{
+  display: inline-block;
+  width: 37px;
+  height: 12px;
+  background: url(../images/toggle_navi.png) no-repeat center / cover;
+  font-size: 0;
+  border: 0;
+  cursor: pointer;
+}
+/* visual area */
+.visual {
+  position: relative;
+  height: 100vh;
+
+}
+.swVisual {
+  width: 100%;
+  height: 100%;
+}
+
+.swVisual video{
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+/* control */
+.visual .inner{
+
+  position: absolute;
+  bottom: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+}
+.visual-control{
+  display: flex;
+  gap: 0 35px;
+  align-items: flex-start;
+}
+.visual-control li{
+  position: relative;
+  width: calc(100% / 8);
+  text-align: center;
+  padding: 20px 0;
+  cursor: pointer;
+}
+.visual-control li::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.visual-control li .bar{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color:  rgba(255, 255, 255, 1);
+  transition: width .3s;
+}
+.visual-control li span{
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
 }

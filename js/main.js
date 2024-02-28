@@ -96,6 +96,9 @@ window.addEventListener("load", function () {
     if (playPromise !== undefined) {
       playPromise.then((_) => {}).catch((error) => {});
     }
+    //progress bar 도 같이 넘어가는 코드 (하단 코드 재사용)
+    this.clearInterval(videoTimer);
+    videoReset();
   });
   //video 영상 플레이가 끝나면 다음 slide로 넘어가기
   //video progress bar
@@ -115,6 +118,30 @@ window.addEventListener("load", function () {
     }
     // 활성화 될 bar class 선택
     let activeBar = bars[videoIndex];
-    console.log(activeBar);
+    // console.log(activeBar);
+    //setTimeout : 1번 실행 clearTimeOut()
+    //setInterval : 시간마다 연속 실행 clearInterval()
+    this.clearInterval(videoTimer);
+    //비디오 플레이 시간
+    let videoTime = videoTimeArr[videoIndex];
+    videoTimer = this.setInterval(() => {
+      barScaleW++;
+      activeBar.style.width = `${barScaleW}%`;
+      if (barScaleW >= 100) {
+        swVisual.slideNext();
+        clearInterval(videoTimer);
+        videoReset();
+      }
+    }, videoTime * 10);
   }
+
+  videoReset();
+  //video control > li 클릭했을 때 해당 페이지 활성화 하기
+  const visualConrolLi = this.document.querySelectorAll(".visual-control > li");
+  visualConrolLi.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      videoIndex = index;
+      swVisual.slideTo(videoIndex);
+    });
+  });
 });

@@ -144,4 +144,15 @@ window.addEventListener("load", function () {
       swVisual.slideTo(videoIndex);
     });
   });
+  //aos 적용
+  AOS.init();
+  //business swiper
+  const swBusiness = new Swiper(".swBusiness", {
+    loop: true,
+    speed: 500,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+  });
 });
